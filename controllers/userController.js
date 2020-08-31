@@ -1,17 +1,24 @@
 import User from "../models/userModel"
-import errors from "../errors/dataBaseErrors"
 
-exports.register = (req, res) => {
-    console.log("req.body", req.body);
-    const user = new User(req.body);
-    user.save((err, user) => {
-        if (err) {
-            return res.status(400).json({
-                err:errors.dataBaseErrors(err)
-            });
+
+exports.userProfile=(req,res)=>{
+     return res.json(req.profile);
+}
+
+
+exports.profileUpdate=(req,res)=>{
+    
+    User.findOneAndUpdate(
+        { _id: req.profile._id },
+        { $set: req.body },
+        { new: true },
+        (err, user) => {
+            if (err) {
+                return res.status(400).json({
+                    error: "You are not authorized to perform this action"
+                });
+            }
+            res.json(user);
         }
-        res.json({
-            user
-        });
-    });
-};
+    );
+}

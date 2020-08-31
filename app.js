@@ -2,15 +2,19 @@ import express from "express"
 import morgan from "morgan"
 import bodyParser from "body-parser"
 import cookieParser from "cookie-parser"
+import cors from "cors"
 import validator from "express-validator"
 
-
-
 //importing routes
-import userRoutes from "./routes/user"
+import authRoutes from "./routes/authRoutes"
+import userRoutes from "./routes/userRoutes"
+import adminRoutes from "./routes/adminRoutes"
+import queryRoutes from "./routes/queryRoutes"
+
 const app = express()
 
 app.use(morgan('dev'))
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cookieParser())
@@ -20,5 +24,9 @@ app.use(cookieParser())
 app.use(validator())
 
 
+app.use('/api',authRoutes)
 app.use('/api',userRoutes)
+app.use('/api',adminRoutes)
+app.use('/api',queryRoutes)
+
 module.exports=app
