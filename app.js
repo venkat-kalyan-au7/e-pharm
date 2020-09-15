@@ -10,6 +10,8 @@ import authRoutes from "./routes/authRoutes"
 import userRoutes from "./routes/userRoutes"
 import adminRoutes from "./routes/adminRoutes"
 import queryRoutes from "./routes/queryRoutes"
+import paymentRoutes from "./routes/paymentRoutes"
+import orderRoutes from "./routes/orderRoutes"
 
 const app = express()
 
@@ -28,5 +30,7 @@ app.use('/api',authRoutes)
 app.use('/api',userRoutes)
 app.use('/api',adminRoutes)
 app.use('/api',queryRoutes)
+app.use('/api',paymentRoutes)
+app.use('/api',orderRoutes)
 
 module.exports=app

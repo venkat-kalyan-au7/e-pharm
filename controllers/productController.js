@@ -5,23 +5,21 @@ import Category from "../models/categoryModel"
 import Product from "../models/productModel"
 import errors from "../errors/dataBaseErrors"
 
+//localhost:4000/api/category/create/5f4659805ab97402107fb25c
 
+///api/category/create/5f4cd109b5d5fa25288a08f6
 
 //creating new category
 exports.addNewCategory =(req,res)=>{
-    let ctry = new Category(req.body)
-    ctry.save((err,savedData)=>{
-        if(err){
+    const category = new Category(req.body);
+    category.save((err, data) => {
+        if (err) {
             return res.status(400).json({
-                error:errors.dataBaseErrors(err)
-            })
+                error: errors.dataBaseErrors(err)
+            });
         }
-        else{
-            res.json({savedData})
-        }
-
-
-    })
+        res.json({ data });
+    });
 }
 //to view single category
 exports.viewCategory=(req,res)=>{
@@ -69,8 +67,8 @@ exports.addProduct = (req, res) => {
             });
         }
         
-        const {productName,price,description,quantity,freeDelivery,category} = fields
-        if(!productName||!price||!description||!quantity||!freeDelivery||!category){
+        const {name,price,description,quantity,shipping,category} = fields
+        if(!name||!price||!description||!quantity||!shipping||!category){
             return res.status(400).json({
                 error:'All Fields Are Required'
             })
@@ -275,4 +273,28 @@ exports.imageOfProduct=(req,res)=>{
         return res.send(req.product.photo.data);
     }
     next();
+}
+
+
+exports.Search=(req,res)=>{
+      // create query object to hold search value and category value
+      const query = {};
+      // assign search value to query.name
+      if (req.query.search) {
+          query.name = { $regex: req.query.search, $options: "i" };
+          // assigne category value to query.category
+          if (req.query.category && req.query.category != "All") {
+              query.category = req.query.category;
+          }
+          // find the product based on query object with 2 properties
+          // search and category
+          Product.find(query, (err, products) => {
+              if (err) {
+                  return res.status(400).json({
+                      error: errorHandler(err)
+                  });
+              }
+              res.json(products);
+          }).select("-photo");
+      }
 }

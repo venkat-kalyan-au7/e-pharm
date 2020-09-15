@@ -7,7 +7,8 @@ import mongoose from "mongoose"
 mongoose.connect(process.env.DB,{
     useNewUrlParser:true,
     useUnifiedTopology:true,
-    useCreateIndex:true
+    useCreateIndex:true,
+    useFindAndModify:true
 }).then(()=>{
     console.log("database connected")
 }).catch((err)=>{

@@ -8,7 +8,8 @@ import {viewCategory,
         relatedMed,
         allProductCategories,
         showBySearch,
-        imageOfProduct} from "../controllers/productController"
+        imageOfProduct,
+        Search} from "../controllers/productController"
 
 import {getUserById,
         getProductById,
@@ -28,5 +29,6 @@ router.get('/products/categories',allProductCategories)
 router.get('/product/photo/:productId',imageOfProduct)
 //we are using request body in this so i created it as post method 
 router.post("/products/by/search", showBySearch);
+router.get("/products/search", Search);
 
 module.exports = router

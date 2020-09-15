@@ -1,6 +1,7 @@
 import User from "../models/userModel"
 import Product from "../models/productModel"
 import Category from "../models/categoryModel"
+import {Order} from "../models/cartModel"
 
 /**this helper middleware in finding the user by 
 id whenever client requests to the server by route params*/
@@ -45,4 +46,18 @@ exports.getCategoryById=(req,res,next,id)=>{
             next()
         }
     })
+}
+
+exports.getOrderById=(req,res,next,id)=>{
+    Order.findById(id)
+    .populate("products.product", "name price")
+    .exec((err, order) => {
+        if (err || !order) {
+            return res.status(400).json({
+                error: errorHandler(err)
+            });
+        }
+        req.order = order;
+        next();
+    });
 }

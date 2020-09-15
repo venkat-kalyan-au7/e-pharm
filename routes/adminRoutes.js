@@ -18,7 +18,7 @@ router.param('productId',getProductById)
 router.param('categoryId',getCategoryById)
 
 // for categories
-router.post('/category/add/:userId',loggedIn,currentUser,Admin,addNewCategory)
+router.post('/category/create/:userId',loggedIn,currentUser,Admin,addNewCategory)
 router.delete('/category/:categoryId/:userId',loggedIn,currentUser,Admin,deleteCategory)
 
 // for products
