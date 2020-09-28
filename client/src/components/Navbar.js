@@ -16,7 +16,7 @@ const Menu = ({ history }) => (
                     style={isActive(history, "/")}
                     to="/"
                 >
-                    Home
+                    <i class="home icon"></i>
                 </Link>
             </li>
 
@@ -73,7 +73,7 @@ const Menu = ({ history }) => (
                     style={isActive(history, "/cart")}
                     to="/cart"
                 >
-                    Cart{" "}
+                    <i class="shopping bag icon"></i>{" "}
                     <sup>
                         <small className="cart-badge">{itemTotal()}</small>
                     </sup>
@@ -93,7 +93,7 @@ const Menu = ({ history }) => (
                                         history.push("/");
                                     })
                                 }>
-                                Logout
+                                <i class="sign-out alternate icon"></i>
                             </span>
                     </li>
                 </div>

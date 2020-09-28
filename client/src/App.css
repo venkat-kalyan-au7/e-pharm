@@ -72,9 +72,11 @@
 
 .jumbotron {
     height: 180px;
-    color: #fff;
-    background-image: url(https://res.cloudinary.com/dcodsplu3/image/upload/v1600490441/My_Post_3_ukdgcq.png);
-    background-size: 400% 400%;
+    color:black;
+    background-image: url(https://res.cloudinary.com/dcodsplu3/image/upload/v1601279424/My_Post_7_ogxiph.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
    
 }
 
