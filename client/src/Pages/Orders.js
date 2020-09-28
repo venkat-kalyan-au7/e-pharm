@@ -94,9 +94,9 @@ const Orders = () => {
     return (
         <Layout
             title="Orders"
-            description={`G'day ${
+            description={`Hello ${
                 user.name
-            }, you can manage all the orders here`}
+            }, you can manage orders here`}
             className="container-fluid"
         >
             <div className="row">
@@ -111,7 +111,7 @@ const Orders = () => {
                                 style={{ borderBottom: "5px solid indigo" }}
                             >
                                 <h2 className="mb-5">
-                                    <span className="bg-primary">
+                                    <span className="bg-info">
                                         Order ID: {o._id}
                                     </span>
                                 </h2>
@@ -124,7 +124,7 @@ const Orders = () => {
                                         Transaction ID: {o.transaction_id}
                                     </li>
                                     <li className="list-group-item">
-                                        Amount: ${o.amount}
+                                        Amount: ₹{o.amount}
                                     </li>
                                     <li className="list-group-item">
                                         Ordered by: {o.user.name}
@@ -149,7 +149,7 @@ const Orders = () => {
                                         key={pIndex}
                                         style={{
                                             padding: "20px",
-                                            border: "1px solid indigo"
+                                            border: "1px solid yellow"
                                         }}
                                     >
                                         {showInput("Product name", p.name)}
