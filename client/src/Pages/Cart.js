@@ -42,7 +42,7 @@ const Cart = () => {
   return (
       <Layout
           title="Shopping Cart"
-          description="Manage your cart items. Add remove checkout or continue shopping."
+          description="Manage your cart items."
           className="container-fluid"
       >
           <div className="row">
